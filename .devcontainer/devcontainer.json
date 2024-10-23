@@ -1,0 +1,28 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/go
+{
+	"name": "Go",
+	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
+	"image": "mcr.microsoft.com/devcontainers/go:1-1.23-bookworm",
+	"features": {
+		"ghcr.io/deep-space-cartel/devcontainers-features/pip:1": {
+			"packages": "pre-commit",
+			"location": "/opt/pip"
+		},
+		"ghcr.io/devcontainers/features/github-cli:1": {},
+		"ghcr.io/deep-space-cartel/devcontainers-features/starship:1": {}
+	},
+	"remoteEnv": {
+		"PATH": "/opt/pip/bin/:${containerEnv:PATH}"
+	},
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"streetsidesoftware.code-spell-checker"
+			],
+			"settings": {
+				"dotfiles.repository": "deep-space-cartel/dotfiles"
+			}
+		}
+	}
+}
