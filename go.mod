@@ -1,6 +1,6 @@
-module github.com/deep-space-cartel/fooddata-central-client-go/v2
+module github.com/deep-space-cartel/fooddata-central-client-go
 
-go 1.23.2
+go 1.23.0
 
 require (
 	github.com/BurntSushi/toml v1.4.1-0.20240526193622-a339e1f7089c
