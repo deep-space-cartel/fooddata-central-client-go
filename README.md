@@ -13,7 +13,7 @@ For more information, please visit [https://nal.altarama.com/reft100.aspx?key=Fo
 ## Installation
 Put the package under your project folder and add the following in import:
 ```golang
-import "./swagger"
+import "github.com/deep-space-cartel/fooddata-central-client-go"
 ```
 
 ## Documentation for API Endpoints
@@ -85,11 +85,34 @@ Class | Method | HTTP request | Description
 
 Example
 ```golang
-auth := context.WithValue(context.Background(), sw.ContextAPIKey, sw.APIKey{
-	Key: "APIKEY",
-	Prefix: "Bearer", // Omit if not necessary.
-})
-r, err := client.Service.Operation(auth, args)
+type CustomTransport struct {
+	Transport http.RoundTripper
+}
+
+func (t *CustomTransport) RoundTrip(req *http.Request) (*http.Response, error) {
+	// Parse the request URL and add the query parameter
+	query := req.URL.Query()
+	query.Add("api_key", "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX")
+	req.URL.RawQuery = query.Encode()
+
+	// Use the original Transport to send the request
+	return t.Transport.RoundTrip(req)
+}
+
+func main () {
+	client := fdc.NewAPIClient(&fdc.Configuration{
+		BasePath:  "https://api.nal.usda.gov/fdc",
+		UserAgent: "fooddata-central-client-go/0.1.0",
+		HTTPClient: &http.Client{
+			Transport: &CustomTransport{
+				Transport: http.DefaultTransport,
+			},
+		},
+	})
+
+	// Use the client to call an API endpoint
+	client.FDCApi.GetFoodsSearch(ctx, "potatoes", &fdc.FDCApiGetFoodsSearchOpts{})
+}
 ```
 
 ## Author
