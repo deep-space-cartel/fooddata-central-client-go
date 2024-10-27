@@ -8,10 +8,40 @@
  */
 package fdc
 
+import (
+	"encoding/json"
+	"fmt"
+)
+
 type InlineResponse200 struct {
 	AbridgedFoodItem
 	BrandedFoodItem
 	FoundationFoodItem
 	SrLegacyFoodItem
 	SurveyFoodItem
+}
+
+func (ir *InlineResponse200) UnmarshalJSON(data []byte) error {
+	var temp struct {
+		DataType string `json:"dataType"`
+	}
+
+	if err := json.Unmarshal(data, &temp); err != nil {
+		return err
+	}
+
+	switch temp.DataType {
+	case "Abridged":
+		return json.Unmarshal(data, &ir.AbridgedFoodItem)
+	case "Branded":
+		return json.Unmarshal(data, &ir.BrandedFoodItem)
+	case "Foundation":
+		return json.Unmarshal(data, &ir.FoundationFoodItem)
+	case "SR Legacy":
+		return json.Unmarshal(data, &ir.SrLegacyFoodItem)
+	case "Survey":
+		return json.Unmarshal(data, &ir.SurveyFoodItem)
+	default:
+		return fmt.Errorf("unknown data type: %s", temp.DataType)
+	}
 }

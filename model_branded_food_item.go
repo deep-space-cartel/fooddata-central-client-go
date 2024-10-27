@@ -21,7 +21,7 @@ type BrandedFoodItem struct {
 	Ingredients              string                         `json:"ingredients,omitempty"`
 	ModifiedDate             string                         `json:"modifiedDate,omitempty"`
 	PublicationDate          string                         `json:"publicationDate,omitempty"`
-	ServingSize              int32                          `json:"servingSize,omitempty"`
+	ServingSize              interface{}                    `json:"servingSize,omitempty"`
 	ServingSizeUnit          string                         `json:"servingSizeUnit,omitempty"`
 	PreparationStateCode     string                         `json:"preparationStateCode,omitempty"`
 	BrandedFoodCategory      string                         `json:"brandedFoodCategory,omitempty"`
@@ -30,4 +30,13 @@ type BrandedFoodItem struct {
 	FoodNutrients            []FoodNutrient                 `json:"foodNutrients,omitempty"`
 	FoodUpdateLog            []FoodUpdateLog                `json:"foodUpdateLog,omitempty"`
 	LabelNutrients           *BrandedFoodItemLabelNutrients `json:"labelNutrients,omitempty"`
+	PackageWeight            string                         `json:"packageWeight,omitempty"`
+	ShortDescription         string                         `json:"shortDescription,omitempty"`
+	DiscontinuedDate         string                         `json:"discontinuedDate,omitempty"`
+	BrandName                string                         `json:"brandName,omitempty"`
+	SubbrandName             string                         `json:"subbrandName,omitempty"`
+	MarketCountry            string                         `json:"marketCountry,omitempty"`
+	// FoodComponents []
+	// FoodPortions []
+
 }

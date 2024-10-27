@@ -17,6 +17,7 @@ type SurveyFoodItem struct {
 	FoodCode          string             `json:"foodCode,omitempty"`
 	PublicationDate   string             `json:"publicationDate,omitempty"`
 	StartDate         string             `json:"startDate,omitempty"`
+	FoodNutrients     []FoodNutrient     `json:"foodNutrients,omitempty"`
 	FoodAttributes    []FoodAttribute    `json:"foodAttributes,omitempty"`
 	FoodPortions      []FoodPortion      `json:"foodPortions,omitempty"`
 	InputFoods        []InputFoodSurvey  `json:"inputFoods,omitempty"`
