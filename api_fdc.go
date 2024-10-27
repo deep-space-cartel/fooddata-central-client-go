@@ -117,6 +117,8 @@ func (a *FDCApiService) GetFood(ctx context.Context, fdcId string, localVarOptio
 		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
 		if err == nil {
 			return localVarReturnValue, localVarHttpResponse, err
+		} else {
+			return localVarReturnValue, localVarHttpResponse, err
 		}
 	}
 

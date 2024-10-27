@@ -11,6 +11,6 @@ package fdc
 type FoodAttribute struct {
 	Id                int32                           `json:"id,omitempty"`
 	SequenceNumber    int32                           `json:"sequenceNumber,omitempty"`
-	Value             string                          `json:"value,omitempty"`
+	Value             interface{}                     `json:"value,omitempty"`
 	FoodAttributeType *FoodAttributeFoodAttributeType `json:"FoodAttributeType,omitempty"`
 }

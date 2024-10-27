@@ -21,7 +21,7 @@ type FoodUpdateLog struct {
 	Ingredients              string          `json:"ingredients,omitempty"`
 	ModifiedDate             string          `json:"modifiedDate,omitempty"`
 	PublicationDate          string          `json:"publicationDate,omitempty"`
-	ServingSize              int32           `json:"servingSize,omitempty"`
+	ServingSize              interface{}     `json:"servingSize,omitempty"`
 	ServingSizeUnit          string          `json:"servingSizeUnit,omitempty"`
 	BrandedFoodCategory      string          `json:"brandedFoodCategory,omitempty"`
 	Changes                  string          `json:"changes,omitempty"`
